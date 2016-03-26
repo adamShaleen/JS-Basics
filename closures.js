@@ -11,11 +11,11 @@ var outer = function(){
 // Above you're given a function that returns another function which has a closure over the name variable.
 // Invoke outer saving the return value into another variable called 'inner'.
 
-  //Code Here
+  var inner = outer();
 
 //Once you do that, invoke inner.
 
-  //Code Here
+  inner();
 
 
 
@@ -24,17 +24,19 @@ var outer = function(){
 
 var callFriend = function(){
   var friend = 'Jake';
-  function callF(number){
+  return function callF(number){
     return 'Calling ' + friend + ' at ' + number;
   }
   return callF;
 };
 
+var x = callFriend();
+
 
 //Above you're given a callFriend function that returns another function.
 //Do what you need to do in order to call your function and get 'Calling Jake at 435-215-9248' in your console.
 
-  //Code Here
+  console.log(x("435-215-9248"));
 
 
 
@@ -44,9 +46,16 @@ var callFriend = function(){
 
 /*
   Write a function called makeCounter that makes the following code work properly.
-*/
+*/  //Code Here
 
-  //Code Here
+function makeCounter() {
+    var counter = 1;
+    return function() {
+        return counter++;
+    }
+}
+
+//Uncomment this once you make your function
   var count = makeCounter();
   count(); // 1
   count(); // 2
@@ -65,7 +74,7 @@ var callFriend = function(){
 // You will need to use the module pattern to achieve this.
 
 function counterFactory(value) {
-  return {
+  return {}
 
     // Code inc function
     // Code dec function
@@ -74,9 +83,6 @@ function counterFactory(value) {
 
 
 counter = counterFactory(10);
-
-counter.inc(); // 11
-counter.dec(); // 10
 
 
 
@@ -88,15 +94,18 @@ counter.dec(); // 10
 
   function motivation(firstname, lastname){
 
-    var welcomeText = 'Your doing awesome keep it up    ';
+    var welcomeText = 'Your doing awesome keep it up ';
 
     // code message function here
+      function message() {
+          return welcomeText + firstname + lastname;
+      }
 
-    return message()
-
+    //Uncommment this to return the value of your invoked message function
+     return message()
   }
 
-  motivation('Billy', 'Bob'); // 'Your doing awesome keep it up Billy Bob
+  console.log(motivation('Billy', 'Bob')); // 'Your doing awesome keep it up Billy Bob
 
 
 
@@ -123,7 +132,8 @@ counter.dec(); // 10
 
   })();
 
-  module.publicMethod();
+//Uncomment this after you create your public method
+//   module.publicMethod();
 
 
 
@@ -142,12 +152,14 @@ counter.dec(); // 10
   // To make this code work you will need to create a new scope for every iteration.
 
 
+function arrayCounter() {
+   var counting = [0];
+   return function() {
+       return counting;
+   }
+}
 
-
-
-
-
-
+var funcArray = arrayCounter();
 
 /*
   Make the following code work
@@ -161,5 +173,3 @@ counter.dec(); // 10
 
   *Hint: Don't let this fool you. Break down what's really happening here.
 */
-
-
